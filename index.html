@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>生日快乐 🎂</title>
+    <meta name="description" content="3D生日祝福网站，带有可交互的3D蛋糕">
+    <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@300;400;700;900&family=Pacifico&display=swap"
+        rel="stylesheet">
+    <!-- Three.js 库 -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+</head>
+
+<body>
+    <!-- 背景音乐 -->
+    <audio id="birthdaySong" loop>
+        <source src="zy/bir.mp3" type="audio/mpeg">
+        您的浏览器不支持音频播放。
+    </audio>
+
+    <!-- 音乐控制按钮 -->
+    <button id="musicToggle" class="music-btn" aria-label="音乐控制">
+        <span class="music-icon">🎵</span>
+    </button>
+
+    <!-- 主容器 -->
+    <div class="container">
+        <!-- 标题区域 -->
+        <div class="header">
+            <h1 class="title fade-in">杜志艳，生日快乐！</h1>
+            <p class="subtitle fade-in-delay">Happy Birthday to You! 🎉</p>
+            <p class="instruction">🖱️ 拖动鼠标旋转蛋糕 | 滚轮缩放</p>
+        </div>
+
+        <!-- 3D蛋糕画布 -->
+        <div class="cake-container">
+            <canvas id="cakeCanvas"></canvas>
+        </div>
+
+
+
+
+    </div>
+
+    <!-- 飘落的粒子 -->
+    <div class="particles-container" id="particlesContainer"></div>
+
+    <script src="script.js"></script>
+</body>
+
+</html>

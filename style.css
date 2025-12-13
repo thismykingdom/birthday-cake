@@ -1,0 +1,419 @@
+/* 设计系统 - 颜色与变量 */
+:root {
+    --primary-color: #ff6b9d;
+    --secondary-color: #ffd93d;
+    --accent-color: #c44569;
+    --background-overlay: rgba(0, 0, 0, 0.4);
+    --card-background: rgba(255, 255, 255, 0.92);
+    --shadow-soft: 0 8px 32px rgba(0, 0, 0, 0.15);
+    --shadow-medium: 0 12px 48px rgba(0, 0, 0, 0.2);
+    --shadow-glow: 0 0 30px rgba(255, 107, 157, 0.3);
+    --text-primary: #2c3e50;
+    --text-secondary: #7f8c8d;
+    --gradient-warm: linear-gradient(135deg, #ff6b9d 0%, #ffd93d 100%);
+    --gradient-cool: linear-gradient(135deg, #a8edea 0%, #fed6e3 100%);
+}
+
+/* 全局样式 */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Noto Sans SC', sans-serif;
+    background: url('zy/cake.png') center/cover no-repeat fixed;
+    min-height: 100vh;
+    overflow-x: hidden;
+    color: var(--text-primary);
+    position: relative;
+}
+
+body::before {
+    content: '';
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--background-overlay);
+    backdrop-filter: blur(2px);
+    z-index: -1;
+}
+
+/* 容器 */
+.container {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 40px 20px;
+    position: relative;
+    z-index: 1;
+}
+
+/* 音乐控制按钮 */
+.music-btn {
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background: var(--gradient-warm);
+    border: none;
+    cursor: pointer;
+    z-index: 1000;
+    box-shadow: var(--shadow-medium);
+    transition: all 0.3s ease;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.music-btn:hover {
+    transform: scale(1.1);
+    box-shadow: 0 15px 60px rgba(255, 107, 157, 0.4);
+}
+
+.music-btn.playing {
+    animation: pulse 1.5s infinite;
+}
+
+.music-icon {
+    font-size: 28px;
+}
+
+@keyframes pulse {
+
+    0%,
+    100% {
+        transform: scale(1);
+    }
+
+    50% {
+        transform: scale(1.05);
+    }
+}
+
+/* 标题区域 */
+.header {
+    text-align: center;
+    margin-bottom: 50px;
+}
+
+.title {
+    font-family: 'Pacifico', cursive;
+    font-size: 4rem;
+    color: var(--primary-color);
+    text-shadow: 3px 3px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 15px;
+    animation: bounce 1s ease;
+}
+
+.subtitle {
+    font-size: 1.5rem;
+    color: var(--accent-color);
+    font-weight: 300;
+    letter-spacing: 2px;
+}
+
+/* 动画 */
+.fade-in {
+    animation: fadeIn 1.2s ease;
+}
+
+.fade-in-delay {
+    animation: fadeIn 1.5s ease;
+}
+
+@keyframes fadeIn {
+    from {
+        opacity: 0;
+        transform: translateY(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+@keyframes bounce {
+
+    0%,
+    20%,
+    50%,
+    80%,
+    100% {
+        transform: translateY(0);
+    }
+
+    40% {
+        transform: translateY(-30px);
+    }
+
+    60% {
+        transform: translateY(-15px);
+    }
+}
+
+/* 3D蛋糕容器 */
+.cake-container {
+    width: 100%;
+    max-width: 900px;
+    height: 700px;
+    margin: 50px auto;
+    background: transparent;
+    border-radius: 30px;
+    overflow: hidden;
+    position: relative;
+}
+
+#cakeCanvas {
+    width: 100%;
+    height: 100%;
+    display: block;
+    cursor: grab;
+}
+
+#cakeCanvas:active {
+    cursor: grabbing;
+}
+
+.instruction {
+    font-size: 1.2rem;
+    color: white;
+    text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8), 0 0 20px rgba(255, 215, 0, 0.6);
+    margin-top: 15px;
+    font-weight: 600;
+    text-align: center;
+    animation: pulse-text 2s infinite;
+}
+
+@keyframes pulse-text {
+
+    0%,
+    100% {
+        opacity: 0.9;
+        transform: scale(1);
+    }
+
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+}
+
+/* 祝福卡片 */
+.blessing-card {
+    background: var(--card-background);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    box-shadow: var(--shadow-soft);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.blessing-card:hover {
+    transform: translateY(-5px);
+    box-shadow: var(--shadow-medium);
+}
+
+.card-content h2 {
+    color: var(--primary-color);
+    font-size: 2rem;
+    margin-bottom: 20px;
+}
+
+.blessing-text {
+    font-size: 1.2rem;
+    line-height: 1.8;
+    color: var(--text-primary);
+}
+
+.blessing-text strong {
+    color: var(--accent-color);
+    font-size: 1.3rem;
+}
+
+/* 粒子容器 */
+.particles-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.particle {
+    position: absolute;
+    font-size: 1.5rem;
+    animation: fall 4s linear;
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* 留言区 */
+.message-section {
+    background: var(--card-background);
+    border-radius: 20px;
+    padding: 40px;
+    margin: 40px 0;
+    box-shadow: var(--shadow-soft);
+}
+
+.message-section h3 {
+    color: var(--primary-color);
+    font-size: 1.8rem;
+    margin-bottom: 20px;
+    text-align: center;
+}
+
+#messageInput {
+    width: 100%;
+    min-height: 100px;
+    padding: 15px;
+    border: 2px solid var(--primary-color);
+    border-radius: 12px;
+    font-size: 1rem;
+    font-family: inherit;
+    resize: vertical;
+    transition: all 0.3s ease;
+}
+
+#messageInput:focus {
+    outline: none;
+    border-color: var(--accent-color);
+    box-shadow: 0 0 0 3px rgba(255, 107, 157, 0.2);
+}
+
+.submit-btn {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    margin-top: 15px;
+    background: var(--gradient-warm);
+    color: white;
+    border: none;
+    border-radius: 12px;
+    font-size: 1.1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: var(--shadow-soft);
+}
+
+.submit-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: var(--shadow-medium);
+}
+
+.messages-display {
+    margin-top: 30px;
+}
+
+.message-item {
+    background: var(--gradient-cool);
+    padding: 15px 20px;
+    border-radius: 12px;
+    margin-bottom: 10px;
+    animation: slideIn 0.5s ease;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+}
+
+@keyframes slideIn {
+    from {
+        opacity: 0;
+        transform: translateX(-20px);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
+
+/* 星星效果 */
+.stars-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;
+    z-index: 999;
+}
+
+.star {
+    position: absolute;
+    color: var(--secondary-color);
+    font-size: 1.5rem;
+    animation: fall 3s linear;
+    opacity: 0;
+}
+
+@keyframes fall {
+    0% {
+        opacity: 1;
+        transform: translateY(0) rotate(0deg);
+    }
+
+    100% {
+        opacity: 0;
+        transform: translateY(100vh) rotate(360deg);
+    }
+}
+
+/* 响应式设计 */
+@media (max-width: 768px) {
+    .title {
+        font-size: 2.5rem;
+    }
+
+    .subtitle {
+        font-size: 1.2rem;
+    }
+
+    .instruction {
+        font-size: 0.9rem;
+    }
+
+    .cake-container {
+        height: 400px;
+        margin: 30px auto;
+    }
+
+    .blessing-card {
+        padding: 25px;
+    }
+
+    .card-content h2 {
+        font-size: 1.5rem;
+    }
+
+    .blessing-text {
+        font-size: 1rem;
+    }
+
+    .message-section {
+        padding: 25px;
+    }
+
+    .message-section h3 {
+        font-size: 1.5rem;
+    }
+}
